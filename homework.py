@@ -73,8 +73,8 @@ class Running(Training):
         coeff_calorie_2 = 20
         duration_in_min = self.duration * self.MIN_IN_H
         return ((coeff_calorie_1 * self.get_mean_speed()
-                 - coeff_calorie_2) * self.weight
-                 / self.M_IN_KM * duration_in_min)
+                - coeff_calorie_2) * self.weight
+                / self.M_IN_KM * duration_in_min)
 
 
 class SportsWalking(Training):
@@ -100,6 +100,7 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP: float = 1.38
+    
     def __init__(self,
                  action: int,
                  duration: float,
@@ -112,7 +113,7 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        mean_speed: float = (self.length_pool * self.count_pool 
+        mean_speed: float = (self.length_pool * self.count_pool
                              / self.M_IN_KM / self.duration)
         return mean_speed
 
@@ -122,9 +123,9 @@ class Swimming(Training):
         swimming_calorie_2 = 2
         mean_speed: float = self.get_mean_speed()
         spent_calories: float = ((mean_speed + swimming_calorie_1)
-                                  * swimming_calorie_2 * self.weight)
+                                 * swimming_calorie_2 * self.weight)
         return spent_calories
-         
+
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
