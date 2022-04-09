@@ -100,7 +100,7 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP: float = 1.38
-    
+
     def __init__(self,
                  action: int,
                  duration: float,
