@@ -15,10 +15,10 @@ class InfoMessage:
 
     def get_message(self) -> str:
         return (f'Тип тренировки: {self.training_type}; '
-                   f'Длительность: {self.duration:.3f} ч.; '
-                   f'Дистанция: {self.distance:.3f} км; '
-                   f'Ср. скорость: {self.speed:.3f} км/ч; '
-                   f'Потрачено ккал: {self.calories:.3f}.')
+                f'Длительность: {self.duration:.3f} ч.; '
+                f'Дистанция: {self.distance:.3f} км; '
+                f'Ср. скорость: {self.speed:.3f} км/ч; '
+                f'Потрачено ккал: {self.calories:.3f}.')
 
 
 class Training:
@@ -53,7 +53,8 @@ class Training:
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        smth = InfoMessage(self.__class__.__name__, self.duration, self.get_distance(), self.get_mean_speed(), self.get_spent_calories())
+        smth = InfoMessage(self.__class__.__name__, self.duration, self.get_distance(), 
+                           self.get_mean_speed(), self.get_spent_calories())
         return smth
 
 class Running(Training):
@@ -63,7 +64,7 @@ class Running(Training):
                  duration: float,
                  weight: float
                  ) -> None:
-        super().__init__(action, duration, weight)         
+        super().__init__(action, duration, weight)     
     
     def get_spent_calories(self) -> float:
         coeff_calorie_1 = 18
@@ -108,7 +109,8 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        mean_speed: float = self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+        mean_speed: float = (self.length_pool * self.count_pool 
+                             / self.M_IN_KM / self.duration)
         return mean_speed
 
     def get_spent_calories(self) -> float:
@@ -116,7 +118,8 @@ class Swimming(Training):
         swimming_calorie_1 = 1.1
         swimming_calorie_2 = 2
         mean_speed: float = self.get_mean_speed()
-        spent_calories: float = (mean_speed + swimming_calorie_1) * swimming_calorie_2 * self.weight
+        spent_calories: float = ((mean_speed + swimming_calorie_1) 
+                                  * swimming_calorie_2 * self.weight)
         return spent_calories
          
 
